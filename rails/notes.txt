@@ -1,0 +1,8 @@
+
+
+
+Runtime - software/instructions executed while program running
+        - instructions I did not write specifically
+        - Low-level languages like C have small runtimes. Higher level language like
+        - Obj C have extensive runtime.
+        ---Code to implement features of language itself

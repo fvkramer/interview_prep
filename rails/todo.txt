@@ -1,0 +1,68 @@
+0. Language Details
+  -typing
+  -dynamically interpreted, etc.
+  -how languages work under hood
+1. Structure of Framework
+  - ORM abstractions/Model
+  - Connection MVC/Router/Server
+2. App development Process
+3. Testing/Debugging
+4. App production
+
+DB
+
+SQL + ActiveRecord
+Database Domains
+Query Optimization
+Join vs Includes
+How DB Work
+Indexing
+Relational vs Non Relational
+
+DB Security
+SQL Injections
+
+Models 
+  validation testing
+  fat models skinny controllers
+
+Associations
+  how they work
+  more complex/advanced ones
+
+Controllers/Views
+  ad hoc
+
+
+Build Versions + Well Tested
+
+- Financial (Stripe, Braintree, etc.)
+  - API Rate Limiter/API General
+  - Scaling Query Requests
+  - Load Balancing
+  - Authentication System
+  - Transaction System
+
+- Booking/Reservation (AirBnB)
+  - General booking
+  - Multiple bookings same time
+- Search Functionality (Google)
+
+System Design/Rails Implementation
+
+TinyURL
+Pastebin
+Instagram
+Dropbox
+Facebook Messenger
+Twitter
+Youtube/Netflix
+Typeahead Suggestion
+API Rate LImiter
+Twitter Search
+Web Crawler
+Fb Newsfeed
+Yelp
+Uber backend
+Ticketmaster
+Whatsapp
