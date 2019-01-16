@@ -1,5 +1,32 @@
+PROGRAMMING LANGUAGES
+
+High Level -> C/C++ -> Assembly -> Binary
+
+Interpreted                                   Compiled
+source code is the program (scripts)          produces program written in Assembly
+scripts portable. Different interpreters      compiled language architecture specific to machine's
+act diff. Unix shells reaed each statment     platform. 
+and send result. Perl first entire file       FASTER than interpreted, however might need
+Slower, easier to debug. JS, Python           to recompile on other machines
+Any comp can run with appropriate 
+interpreter
 
 
+Intermediate to Computer-specific compiled programs are designed for runtime environments
+Java example. Similar to compiled language, but source code => byte code
+for runtime environment's "virtual machine".
+"VM" interprets byte code => computer specific commands
+
+Advantage - runtime environment only compiles needed pieces of code. 'just-in-time compiling'
+Disad - poorly designed code -> runtime environment compiling all code.  
+
+
+Statically Typed - (verifying and enforcing contraints) at compile time
+Dynamically Typed = type checking at run time
+
+Duck Typing - determines if an object can be used for a particular purpose
+
+Misc/Key Terms/Vocab
 
 Runtime - software/instructions executed while program running
         - instructions I did not write specifically
