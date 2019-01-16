@@ -1,0 +1,25 @@
+js30 projects
+
+advanced js features
+
+-functional programming paradigm
+- prototypal chain
+- currie
+- closures, scope, modules, patterns
+- promises and async
+- http, ajax, axios
+-lexical scoping
+- higher order functions
+- runtime execution and call stack model
+- contexts and OO design
+- static typing and cooercion
+- d shoshnikov
+
+
+- regex
+
+Web Performance
+
+- web workers, service workers, shared workers
+- code optimization and code splitting
+- bundling/minifying
