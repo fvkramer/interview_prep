@@ -203,6 +203,51 @@ IIFE (Immediately Invoked Function Expressions)
 Block statement is statement. whatever returned by block statement
 coerced to 0
 
+8. IIFE, Modules, and Namespaces
+
+Functions vs Function Expressions
+
+var sayHi = function() {
+  alert(msg)
+}
+
+sayHi();
+
+the right side of equals sign is "function expression"
+
+IIFE 
+
+Style 1
+
+funtion() {
+  alert("Hello")
+}();
+
+Style 2
+
+(function() {
+    alert("I am not an IIFE yet!");
+});
+
+used to wrap function execution in its own scope. so variables created
+in function don't affect global scope
+
+wraps function expression in parentheses
+
+(function() {
+    alert("I am not an IIFE yet!");
+})(); 
+
+executes function in own scope not to affect global namespace
+
+function called after created in stack and removed from memory
+
+Therefore, if creating global namespace, wrap everything in IIFE to not pollute
+
+9. Message Queue and Event Loop
+
+
+10. setTimeout, setInterval, requestAnimationFrame
 
 35. JS Tools 
   - Webpack, Bable, ESLint, Mocha, Karma, Grunt
