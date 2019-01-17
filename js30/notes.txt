@@ -60,5 +60,149 @@
   Pure Functions - do not affect anything in outside scope
       - does not affect any variables on outside
       - can make copy of object and return that. doesn't change the actual object
+
+4. Implicit, Explicit, Nominal, Structuring, and Duck Typing
+
+  - JS attempts to coerce value type to expected type
+
+  Non-Numeric Values in Numeric Expressions
+    - Strings
+    - String with numeric operators turned to number
+    - String with non numeric operators returns NaN
+
+    - Except or '+'
+      - if '+'
+        string concatentation
+
+  Javascript Object conversions result in [object Object]
+
+  "name" + {}  //  'name[object Object]
+  every JS object has a toString method that is called when coercion occurs
+
+  Array objects
+
+  toString() method on Arrays is like .join() without arguments
+  concatenating a string with an array -> string + array.toString()
+
+  Number(true) // 1
+  Number(false) // 0
+  Number("")  // 0 
+
+
+  Always be explicit in comparisons
+
+  NaN !== NaN
+  ECMAScript 6 introduced NaN
+
+  Number.isNaN
+
+5. == vs ===
+
+left one type converts. don't use unless you're an OG
+
+6. Function Scope, Block Scope, Lexical Scope
+
+  - scope "bubbles" and creates containers/buckets in which
+    variables, functions declared
+  - function based scope 
+
+  - Principle of "Least Authority"
+    - design API to expose only what is necessary
+    - nest functions within a function to protect scope
+    - private details should be kept private
+
+  - Global "Namespaces" 
+    - multiple libraries loaded into program can collide with each other if 
+      internal/private functions and functions
+
+    - such libraries create single variable declaration, object, in global scope that 
+      encapsulates functionality. this object is then the 'namespace'
+
+
+  - let allows declarations of variables in any arbitrary block of code
+    - var and let should coexist.
+
+  - try {} catch (err) {} block scoping
+
+
+  Garbage Collection
+    - anything declared in block scope is garbaged collected 
+    - if declared in open scope, not garbage collected because things have closure
+
+7. Expression vs Statement
+
+{} + 1     // 1
+{2} + 2    // 2
+{2+2} + 3  // 3
+{2+2} - 3  // -3
+
+Expressions can act like statements. Statements cannot act like Expressions
+
+
+Expressions are JS code that result in a SINGLE value.
+Expressions don't change state
+
+const assignedVariable = 2;
+assignedVariable + 4   //expression
+console.log(assignedVariable)  // 2
+
+Statements perform actions and do things
+
+if (true) {9+9}
+
+above line is a statement but returns a value that canot be used
+
+Function declaration is statement
+function foo (func) {
+  return func.name
+}
+
+Function expression is expression - anonymous function
+console.log(foo(function () {} ))
+
+
+**
+When declaring function where JS expects value, it attempts
+to treat is as value and throws and error
+
+When declaring function at global level script(where not expecting value)
+it results in function declaration
+
+Converting Expressions to Statements
+
+2+2 // expression statement
+foo(); //expression statement
+
+to convert expression to expression statement, use semicolon
+2+2 expression
+2+2; expression statement
+
+
+With semi-colon, can chain multiple statements
+
+const a; function foo() {}; const b = 2
+
+Comma operator allows chaining multiple expressions, returning only last expression
+
+console.log( (1+2,3,4) ) // 4
+
+
+IIFE (Immediately Invoked Function Expressions)
+
+*** read more about it
+
+
+{} + 1 //1
+
+{2} + 2 // 2
+
+{2+2} + 3 // 3
+
+{2+2} -3 // -3
+
+Block statement is statement. whatever returned by block statement
+coerced to 0
+
+
 35. JS Tools 
   - Webpack, Bable, ESLint, Mocha, Karma, Grunt
