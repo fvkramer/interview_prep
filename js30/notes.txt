@@ -249,5 +249,206 @@ Therefore, if creating global namespace, wrap everything in IIFE to not pollute
 
 10. setTimeout, setInterval, requestAnimationFrame
 
+setTimeout - runs once after interval
+
+  function sayHi(phrase, who) {
+  alert( phrase + ', ' + who );
+  }
+
+  let timeId = setTimeout(sayHi, 1000, "Hello", "John");
+  
+  call to setTimeout returns "time identifier"
+  "time identifier" can be used to cancel execution
+
+  clearTimeout(timerId)
+
+
+setInterval - runs everytime on interval
+
+
+let timerId = setInterval(() => alert('tick'), 2000);
+
+// after 5 seconds stop
+setTimeout(() => { clearInterval(timerId); alert('stop'); }, 5000);
+
+Alert window freezes timer in Chrome/Opera/Safari
+Does not freeze in IE, Firefox
+
+2 ways to run something regularly
+
+1. setInterval    2. recursive setTimeout
+
+
+Recursive setTimeout guarantees a delay between the executions, setInterval – does not.
+
+When function passed to setInterval/setTimeout, internal reference
+created to it and saved in scheduler. It prevents function from being  garbage collected
+
+only clears when using     clearInterval
+
+Splitting CPU-hungry tasks
+
+
+let i = 0;
+
+let start = Date.now();
+
+function count() {
+
+  // do a piece of the heavy job (*)
+  do {
+    i++;
+  } while (i % 1e6 != 0);
+
+  if (i == 1e9) {
+    alert("Done in " + (Date.now() - start) + 'ms');
+  } else {
+    setTimeout(count, 0); // schedule the new call (**)
+  }
+
+}
+
+count();
+
+
+Browser UI fully functional during "counting" process
+
+In-browser scripts can show progress bar to user. Browser 
+usually does "repainting" after script complete
+
+Therefore, if we run one huge function, even if it changes something,
+changes not reflected until document finishes
+
+
+requestAnimationFrame
+
+Previously, to automate something quickly, used
+
+setInterval(()=>***, 1000/60); to get 60fps
+
+Paul Irish introduces   requestAnimationFrame
+
+  - browser can optimize it, so animations are smoother
+  - Animations in inactive tabs stop, so CPU chills
+  - Battery-friendly
+
+
+function repeatOften() {
+  // Do whatever
+  requestAnimationFrame(repeatOften);
+}
+requestAnimationFrame(repeatOften);
+
+call once to start, and then recursively calls it
+
+requestAnimationFrame returns an id like setTimeout or setInterval that can be cancelled
+
+
+11. Javascript Engines
+  - Different platforms use different JS Engines
+  - JS Engine =~ type of virtual machine/software-driven emulation of comp system
+
+  - many types of VMs. classified by how precisely that emulate or substitute physical machines
+
+  System VM - complete emulation of platform 
+  Process Virtual Machine - less fully functional. runs one program or process
+
+  JS Engine is a process virtual machine that interprets and executes JS code
+
+  Different layer engines on browsers
+
+  Layout engine that powers browser Web Page display
+  Lower level JS engines that interpret and execute code
+
+
+  Goal of JS Engine
+
+  take JS code and converts to optimized code that can be 
+  embedded into app or read by browser
+
+  Each browser implements version of ECMAScript (JS dialect)
+  Different engines because all work with different Web browser or runtimes like Node.js
+
+
+  How JS Engine Work?
+
+  JSCore has six building blocks - analyze, interpret, optimize, garbage collect JS code
+  Two main engines are WebKit's JSCore and Google's V8  Engine
+     Both leveraged by NativeScript
+
+
+  JSCore 
+    1. leical analysis
+    2. breaks source into series of tokens/strings
+    3. tokens analyzed by parser for syntax and built into syntax tree
+    4. Then processes analzye and execute bytecode produced by parser
+
+
+    TLDR: JS takes source code, breaks into strinsgs, a.k.a lexes it, take those strings and
+    converts into bytecode that a compiler can understand and then executes it
+
+  Google V8
+    1. Writen in C++
+    2. compiles and executes JS source code, handles memory allocaiton, garbage collects
+    3. Two compilers that assemble source into machine code
+      - Full-codegen - fast compiler that produces un-optimized code
+      - Crankshaft - slower compiled that produces fast, optimized code
+
+
+  Meaning for Web Developers
+
+    - Goal of all engines to produce optimized code
+    - Developers need to understand differences inherent in browsers
+    - Understand why certain scripts may run slower on one browser than another
+
+    - Especially important for mobile Developers
+
+
+
+12. Bitwise Operators, Type Arrays, Array Buffers
+
+13. DOM and Layout Trees
+
+14. Factories and Classes
+
+15. this, call, apply, bind
+
+16. new, Constructor, instanceof, Instances
+
+17. Prototype Inheritance, Prototype Chain
+
+18. Object.create, Object.assign
+
+19. map, reduce, filter
+
+20. Pure Functions, Side Effects, State Mutation
+
+21. Closures
+
+22. Higher Order Functions
+
+23. Recursion
+
+24. Collections and Generators
+
+25. Promises
+
+26. async/await
+
+27. Data structures
+
+28. Expensive Operation and Big O Notation
+
+29. Algos
+
+30. Inheritance, Polymorphism, Code Reuse
+
+31. Design Patterns
+
+32. Partial Applications, Currying, Compose, Principle
+
+33. Clean Code
+
+
 35. JS Tools 
   - Webpack, Bable, ESLint, Mocha, Karma, Grunt
