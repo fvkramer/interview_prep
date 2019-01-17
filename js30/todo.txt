@@ -14,6 +14,9 @@ advanced js features
 - contexts and OO design
 - static typing and cooercion
 - d shoshnikov
+- ecma5 v ecma6
+- webpack and babel
+  - cost of optimizing when huge code base
 
 
 - regex

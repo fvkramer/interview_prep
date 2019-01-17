@@ -26,6 +26,89 @@ Dynamically Typed = type checking at run time
 
 Duck Typing - determines if an object can be used for a particular purpose
 
+
+###################
+
+DB:
+
+TCO - total cost of ownership
+
+Relational vs Non Relational
+Postgresql  -   MongoDB
+
+
+Relational (Relational Databas Management System)
+
+Stores data in rows and columns
+
+Theory/Purpose of Non Relational
+  - build upon relational DB. Incorporate NoSQL innovations for modern applications
+
+Strengths of Relational DB:
+  - suppor relational algebra and have foreign keys, joins, and multi-row transactions
+    - NoSQL does not have
+  - expressive query language and secondary indexes
+    - secondary indexes supported natively by database
+  - strong consistency
+    - immediately read what's written to database
+  - enterprise management and integration
+
+Lacking/NoSQL offers:
+  - Flexible data model
+    - allows flexible data columns in database
+  - Scalability and Performance
+    - includes sharding and/or partioning
+      - allows scaling on commodity hardware -> unlim. growth with higher throughput and lower latency
+        - throughput = amount of data passing through system
+        - latency - delay between transfer of data and instruction to transfer
+  - designed for highly available systes. replication to auto synch data across servers,rack, and data centers
+
+
+
+NoSQL does not have all capabilities that relational DB has.
+MongoDB incorporates NoSQL with SQL
+
+
+
+DB Theory
+
+Integrity of Data important. RDBMS supports ACID
+(Atomicity, Consistency, Isolation, Durability)
+
+Atomicity - indivisible and irreducible transaction that is all or nothing
+    - atomicity guarantee means no partial DB updates
+
+Consistency - db transaction changes affected data in ways adhering to DB rules/data constraints
+Isolation - determines how transaction integrity visible to other users and systems
+  - if user creates purchase order but not purchase order lines, is header available to all other users?
+    - Lower Isolation allows many users to access the same data at the same time
+      - increases number of concurrency effects (such as dirty reads or lost updates) users may encounter
+  - Higher isolation level reduces types of concurrency effects users may encounter, but requires more system resources 
+  and increases chance one transaction blocks another
+
+Durability - guarantees that committed transactions persists
+  - for ex. if someone books a seat on a flight, then seat booked even if system crashes
+
+
+Due to exponential growth of data in past decade, needed different DB theory/model
+
+
+No single software that is NoSQL
+  over 200 projects that fall into NoSQL category
+  each project diff. strengths and weakness
+
+Cons
+- no common standardized query language 
+- NoSQL db do not enforce data constraints in server. Developers have to code them
+- No ACID properties
+- No data modeling. Limits type of queries that can be run efficiently
+- Security flaws. As more features added, "simplicity" decreases
+- So many products -> harder to decide which one to use
+
+Populat NoSQL DB:
+  - MongodDB, Cassandra, Redis
+
+
 Misc/Key Terms/Vocab
 
 Runtime - software/instructions executed while program running
@@ -33,3 +116,19 @@ Runtime - software/instructions executed while program running
         - Low-level languages like C have small runtimes. Higher level language like
         - Obj C have extensive runtime.
         ---Code to implement features of language itself
+
+Sharding - break database into smaller chunks, "shards" and spread across
+          number of servers -> bettter scaling
+
+    Theory 
+      - growth DB transactions and volumes large impact on response times
+      - DB relies on CPU, Memory, Data
+      - Reach limits on single server. send to multiple
+
+Indexing - optimizes performance by minimizing number of disk access required
+        for query processing.
+        - database index is an ordered structure to quickly locate and access data in DB table
+        - indexes created with database columns
+          - first column Search key that contains primary key of table
+          - second column reference to disk block 
+      - O (log N)
