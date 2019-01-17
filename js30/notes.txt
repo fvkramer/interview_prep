@@ -1,0 +1,64 @@
+
+1. Call Stack
+  - single threaded single concurrent language
+  - single call stack + heap + queueu
+    - push onto call stack. when return, pop off
+  - heap - objects are allocated in heap. unstructured region of memory.
+        - memoery allocation to variables and objects happens here
+  - queue - JS runtime contains message queue, list of messages to be processed and associated callback functions to execut
+
+  Event Loop
+    - blocking script - slow function keeps stack occupied/blocked
+    - to stop async code from blocking stack, use asynchronous callbacks
+      - run code and give it a callback function(does not block call stack)
+
+
+  A. Javascript Runtime
+    Call Stack            Heap
+
+    function call         memory allocation
+
+  B. Web APIs (browser provided)
+    
+  C. Callback Queue
+      - Event Loop pushes from callback queue to JS runtime
+
+
+2. Primitive Types
+  - All JS numbers are floating point. 
+    - encoded internally as 64 bit binary
+    - sign occupies bit 63  (bit 0 means positive)
+    - exponent bits 52 to 62 (contains digits of number)
+    - fraction bits 0 to 51 (indicates where point is)
+
+3. Value Types and Reference Types
+  - Primitive Data Types passed by Value
+    - Boolean, null, undefined, String, Number
+  - Objects passed by reference
+    - Array, Function, Object
+
+  - Primitive passing by value means value does not change
+  - Object passed by reference. variables don't actually have the object
+
+
+  - Reassigning reference replaces old reference
+
+  == and === used on reference-type variables. they check reference
+  if they have same values but are distinct objects, comparison retruns false
+
+  When equality operators comparing primitives, they simply check values
+  So to compare two objects, easiest way is to turn them into strings and then compare the strings
+
+  var arr1str = JSON.stringify(arr1);
+  var arr2str = JSON.stringify(arr2);
+
+  arr1str === arr2str  // true
+
+
+  When passing arguments into functions, the values are copied over, so variable reassignment does not occur
+
+  Pure Functions - do not affect anything in outside scope
+      - does not affect any variables on outside
+      - can make copy of object and return that. doesn't change the actual object
+35. JS Tools 
+  - Webpack, Bable, ESLint, Mocha, Karma, Grunt
