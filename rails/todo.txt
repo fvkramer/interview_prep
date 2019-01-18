@@ -33,7 +33,6 @@ Associations
 Controllers/Views
   ad hoc
 
-
 Build Versions + Well Tested
 
 - Financial (Stripe, Braintree, etc.)
