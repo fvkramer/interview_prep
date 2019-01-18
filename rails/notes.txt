@@ -132,3 +132,55 @@ Indexing - optimizes performance by minimizing number of disk access required
           - first column Search key that contains primary key of table
           - second column reference to disk block 
       - O (log N)
+
+SQL Injection
+
+  - SQL statements inserted into entry field for execution
+    - when user input incorrectly filtered for string literal escape characters
+    - or user input not strongly typed
+
+  SQL injection -> spoof identity, tamper w existing data, cause repudiation
+              such as changing balances, destroy data, make unavailable to admins, etc.
+
+  *Escape character = character that causes alternative interpretation of following character
+                      - leads to alternative SQL query
+                    
+  statement = "SELECT * FROM users WHERE name = '" + userName + "';"
+  ' OR '1'='1
+
+  selects all info from user
+
+  can chain multiple SQL statements in one line to drop table
+
+  Incorrect Type Handling
+
+  statement := "SELECT * FROM userinfo WHERE id =" + a_variable + ";"
+
+  user intends for integer, but receiving string. can pass:
+
+  1;DROP TABLE users
+
+  SELECT * FROM userinfo WHERE id=1; DROP TABLE users;
+
+
+  Mitigation
+
+
+  Parameterized statements
+    - instead of using string variable, use parameters. 
+    - it would treat SQL injection as invalid parameter value
+
+
+  Escaping (error-prone)
+    - escape characters that have special meaning
+    - SQL DBMS has blacklist of characters that need to be escaped
+        - ex:   '   needs to be replaced with two single ''
+  Pattern Check
+    - parameters can be checked if value valid representation for given type
+
+  Top Attacks
+
+  SQL Injection + Insufficient Authentication
+  SQL Injection + DDoS attacks
+  SQL Injection + DNS hijacking
+  SQL Injection + XSS
