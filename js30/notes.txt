@@ -378,7 +378,7 @@ requestAnimationFrame returns an id like setTimeout or setInterval that can be c
 
 
   JSCore 
-    1. leical analysis
+    1. lexical analysis
     2. breaks source into series of tokens/strings
     3. tokens analyzed by parser for syntax and built into syntax tree
     4. Then processes analzye and execute bytecode produced by parser
@@ -411,13 +411,129 @@ requestAnimationFrame returns an id like setTimeout or setInterval that can be c
 
 14. Factories and Classes
 
+  Common Approach in Classes
+
+  const Animal = function(name) {
+  this.name = name;
+  }
+  Animal.prototype.walk = function() {
+    console.log(this.name + " walks");
+  }
+
+  poo = new Animal("poo")
+  tommy = new Animal("tommy")
+  poo.walk()
+  tommy.walk()
+
+  Problem is constantly using new keyword. Interpreter doesn't complain so silently fails
+
+  Factory design pattern
+
+  const Animal = function(name){
+    const animal = {};
+    animal.name = name;
+    animal.walk = function(){
+        console.log(this.name + " walks");
+    }
+    return animal;
+  };
+
+  const poo = Animal("poo");
+  const tommy = Animal("tommy");
+  poo.walk() // poo walks
+  tommy.walk() // tommy walks
+
+  
+  Can improve this with mixins - objects that don't have state themselves
+  but have methods attached to them
+
+  Can have multiple mixins to develop factories
+
+  const canFly = {
+  fly(h) {
+    console.log("I can fly " + h "meters high")
+    }
+  }
+  const canDance = {
+    dance() {
+      console.log("Look Maa !! I'm dancing")
+    }
+  }
+  brian = Object.assign(Animal("brian"), canKill, canFly, canDance)
+  brian.walk()
+  brian.fly(200)
+  brian.kill()
+  brian.dance()
+
+  Can use factory to create a factory of factories
+
+  roboDog = Object.assign(Animal("roboDog"), Robot("roboDog"))
+
+  killingRoboDog = Object.assign({}, roboDog, canKill)
+  killingRoboDog.walk()
+  killingRoboDog.kill()
+  killingRoboDog.speak("roboDog will kill you")
+
 15. this, call, apply, bind
 
 16. new, Constructor, instanceof, Instances
 
+  typeof vs. instanceof
+
+  typeof checks if value element of primitive
+
+  if (typeof value === 'string)
+
+  instanceof checks if value instance of a class or constructor function
+
+  if (value instanceof Map)
+    also, value.constructor and value.constructor.name are useful
+
+
+  NOTE:    typeof null === 'object'
+  typeof {}  === 'object'
+  typeof function () {} === 'function'
+
+  Default conversion from object to string is "[object Object]"
+  aka. default serialization
+
+
+  Object.prototype.toString.call(num)
+
+  (value).constructor === Array, Boolean, Date, etc.
+
 17. Prototype Inheritance, Prototype Chain
 
+   Objects have prototype objects which are template objects that it inherits methods and
+   properties from
+
+   __proto__ is actual object used in lookup chain to resolve methods
+   prototpye is object that is used to build __proto__
+
+          Foo  ---->   __proto__  ----->  Function.prototype
+
+          |  prototype
+          |
+            
+          Foo.prototype    
+    
+    Constructor Function -> Function.prototype -> Object.prototype
+    Constructor Function Prototype -> Foo.prototype -> __proto__ -> Object.prototype
+
 18. Object.create, Object.assign
+
+  Object.create - creates new object using existing object as prototype of newly created object
+  Object.assign - method that copies values of all enumerable properties from one or more source
+    objects to target object. Returns target object
+
+  Object.assign(target, ...sources)
+
+  Properties in target object overwritten by properties in sources if same key
+
+  - does not deep clone
+    - do this instead:
+      
+      let obj3 = JSON.parse(JSON.stringify(obj1))
 
 19. map, reduce, filter
 
