@@ -1,3 +1,6 @@
+"Callback" - function to be executed after another function finished executing
+
+
 
 1. Call Stack
   - single threaded single concurrent language
@@ -541,11 +544,134 @@ requestAnimationFrame returns an id like setTimeout or setInterval that can be c
 
 21. Closures
 
+  - combination of function and lexical environment in which function declared
+
+function init() {
+    var name = "Mozilla"; // name is a local variable created by init
+    function displayName() { // displayName() is the inner function, a closure
+        alert (name); // displayName() uses variable declared in the parent function    
+    }
+    displayName();    
+}
+
+init();
+
+
+function makeAdder(x) {
+  return function(y) {
+    return x + y;
+  };
+}
+
+var add5 = makeAdder(5);
+var add10 = makeAdder(10);
+
+console.log(add5(2));  // 7
+console.log(add10(2)); // 12
+
+
+makeAdder - function factory
+add5 and add10 both closures. share different lexical environments
+
+Practicality -
+    associate data (lexical environment) with function that operates on data
+
+similar to OOP. use closure where normally use an object
+
+
+
+With Closures, can emulate private method encapsulation
+
+
+var counter = (function() {
+  var privateCounter = 0;
+  function changeBy(val) {
+    privateCounter += val;
+  }
+  return {
+    increment: function() {
+      changeBy(1);
+    },
+    decrement: function() {
+      changeBy(-1);
+    },
+    value: function() {
+      return privateCounter;
+    }
+  };   
+})();
+
+
+Above code block restricts access to code, manages global namespace, and keeps non-essential methods from cluttering
+public code interface
+
+-Module pattern
+creates lexical environment for privateCounter and changeBy. none of these can be
+accessed directly. only accessed through private API
+
+
+Closure Scope Chain
+- Local Scope (own scope)
+- Outer Functoins Scope
+- Global Scope
+
+
+Performance Considerations
+
+- not wise to create functions within other functions if closures not needed
+for particular task. it negatively afffects script performance 
+in terms of processing speed and memory consumption
+
+
 22. Higher Order Functions
 
 23. Recursion
 
 24. Collections and Generators
+
+JS code runs in browser. I/O can take long time, therefore JS needs
+module system that supports loading code async. can't serially serach for Modules
+in multiple directories. How do?
+
+ES6 has "keyed collections"
+  - Set,  Map, WeakSet, WeakMap
+      - similar to hash tables in other languages
+  - why not just use objects? 
+    - can, but some problems:
+      - objects being used as lookup tables can't also have methods without risk of collision
+      - property keys are always strings - objects can't be keys
+      - no efficient way to ask how many properties object has
+      - plain objects not iterable. 
+
+  Map and Set
+
+    - iterable
+    - designed to avoid collisions
+    - Map and Set have methods
+
+    Set:
+      - new Set
+      - new Set(iterable)
+      - set.size
+      - set.has(value)
+      - set.add(value)
+      - set.delete(value)
+      - set[Symbol.iterator]()
+      - set.clear()
+      - set.keys(), set.values(), set.entires()
+
+    Map(collection key-value pairs):
+      - new Map
+      - new Map(pairs)
+      - map.size
+      ....
+
+Processing items in collection very common. 
+Iterators and Generators provide mechanism for customizing for...of loops
+
+
+
+
 
 25. Promises
 
